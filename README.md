@@ -2,7 +2,7 @@
 
 网易阴阳师电脑版，按键精灵9脚本，自动探索，刷狗粮。
 
-This is a script, written using Anjianjingling 9, for automated EXP farming in Netease game Onmyoji, PC emulator edition. 
+This is a script, written using Anjianjingling 9, for automated EXP farming in Netease game Onmyoji, PC emulator version. 
 
 ## 准备工作
 
@@ -40,7 +40,7 @@ This is a script, written using Anjianjingling 9, for automated EXP farming in N
 
 ## 更新记录
 
-2018年1月14日，上传了初始版本。
+2018年1月13日，上传了初始版本。
 
 ## 免责声明
 
