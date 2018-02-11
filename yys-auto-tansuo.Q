@@ -29,7 +29,8 @@ UEsDBBQAAgAIAM6uLUwZ5CBPAwIAAK4GAAAIABEAbWFuMi5ibXBVVA0ABy+AWlpPf1paT39aWnPyXcfG
 [Script]
 Function WTFC(colx, coly, coll, x1, x2, y1, y2, zzz)
     j=0
-    While j=0	
+    While j = 0
+    	Call REJXS()
         IfColor colx,coly,coll,zzz Then
             j=1
         End If
@@ -44,7 +45,13 @@ Function CRND(x1, x2, y1, y2)
     y = Int((y2 - y1) * Rnd + y1 + sty-50)
     Call Plugin.Bkgnd.LeftClick(Hwnd,x-stx-xs,y-sty-ys)
 End Function
-
+Function REJXS()
+	IfColor 814,538,"5C6EDD",0 Then
+		Call CRND(814 - 3, 814 + 3, 538 - 3, 538 + 3)
+		TracePrint "成功拒绝一次悬赏！"
+		Delay 1000
+	End If 
+End Function
 
 stx = 50
 sty = 50
@@ -63,14 +70,16 @@ Rem tsstt
 
 Call Plugin.Window.Move(Hwnd, stx, sty)
 
+Call REJXS()
 FindPic stx, sty, stx + 1130, sty + 640, "Attachment:\yys_bx.bmp", 0.9, x, y
 If x > 0 and y > 0 Then 
 	TracePrint "找到宝箱"
 	Call CRND(x - 2, x + 2, y - 2, y + 2)
-	Delay 3000
+	Delay 5000
 	For 3
-		Call CRND(497, 783, 295, 533)
-		Delay 333 * Rnd
+		Call REJXS()
+		Call CRND(727, 898, 226, 410)
+		Delay 333
 	Next	
 End If
 
@@ -84,6 +93,7 @@ rwsteps = 0
 
 jinss = 0
 While jinss = 0
+	Call REJXS()
 	IfColor 1053, 593, "2965FE", 0 Then
      // 已进入探索章节
       jinss = 1
@@ -94,42 +104,61 @@ Wend
 Rem tansuo1
 
 //点怪
+Call REJXS()
 
 bosf = 0
-FindColor stx,sty,stx+1136,sty+640,"1A256E",x,y
-If x > 0 And y > 0 Then 
- TracePrint "found boss"
- Call CRND(x - 2, x + 2, y - 2, y + 2)
+//FindColor stx, sty, stx + 1136, sty + 640, "1A256E", x1, y1
+FindColor stx, sty, stx + 1136, sty + 640, "A47E43", x3, y3
+FindColor stx, sty, stx + 1136, sty + 640, "2A2AC5", x4, y4
+If x1 > 0 And y1 > 0 And bosf = 0 Then 
+ TracePrint "found boss @1"
+ Call CRND(x1 - 2, x1 + 2, y1 - 2, y1 + 2)
  bosf = 1
  Goto stbattle
 End If
+If x3 > 0 And y3 > 0 And bosf = 0 Then 
+ TracePrint "found boss @3"
+ Call CRND(x3 - 2, x3 + 2, y3 - 2, y3 + 2)
+ bosf = 3
+ Goto stbattle
+End If
+If x4 > 0 And y4 > 0 And bosf = 0 Then 
+ TracePrint "found boss @4"
+ Call CRND(x4 - 2, x4 + 2, y4 - 2, y4 + 2)
+ bosf = 4
+ Goto stbattle
+End If
 
-
-FindColor stx, sty, stx + 1136, sty + 640, "A39BE9", x1, y1
+Call REJXS()
+//FindColor stx, sty, stx + 1136, sty + 640, "A39BE9", x1, y1
 FindColor stx, sty, stx + 1136, sty + 640, "C3B8F5", x2, y2
 FindColor stx, sty, stx + 1136, sty + 640, "8A85D2", x3, y3
 bsp = 0
+/*
 If x1 > 0 And y1 > 0 And bsp = 0 Then 
- TracePrint "found@1"
+ TracePrint "found @1"
  bsp = 1
  call CRND(x1-2,x1+2,y1-2,y1+2)
 End If
+*/
 If x2 > 0 And y2 > 0 And bsp = 0 Then 
- TracePrint "found@2"
+ TracePrint "found @2"
  bsp = 2
  call CRND(x2-2,x2+2,y2-2,y2+2)
 End If
 If x3 > 0 And y3 > 0 And bsp = 0 Then 
- TracePrint "found@3"
+ TracePrint "found @3"
  bsp = 3
  call CRND(x3-2,x3+2,y3-2,y3+2)
 End If
 
+Call REJXS()
 IfColor 1094,694,"385F8A",0 Then
 	//极其巧合的结算瞎点导致直接进入新战斗！
 	Goto stbattle
 End If
 
+Call REJXS()
 If bsp = 0 Then 
 	TracePrint "Not Found!"
 	If Rnd > 0.5 Then 
@@ -154,12 +183,14 @@ End If
 Rem stbattle
 Delay 1000
 
+Call REJXS()
 IfColor 1053, 593, "2965FE", 0 Then
      // 进入战斗失败 
      Goto tansuo1
 End If
 
 While qjjs = 0
+	Call REJXS()
 	IfColor 1094,694,"385F8A",0 Then
 		qjjs = 1
 		// 已进入战斗
@@ -167,6 +198,7 @@ While qjjs = 0
  	Delay 100
 Wend
 
+Call REJXS()
 FindPic stx, sty, stx + 1130, sty + 640, "Attachment:\man1.bmp", 0.9, x1, y1
 FindPic stx, sty, stx + 1130, sty + 640, "Attachment:\man2.bmp", 0.9, x2, y2
 
@@ -183,6 +215,7 @@ TracePrint "已经点击准备"
 //判断战斗是否已经开始
 zcc = 0
 While zcc = 0
+	Call REJXS()
     IfColor 102,667,"E0F3F8",0 Then
         zcc = 1
     End If
@@ -195,6 +228,7 @@ Delay 1000
 //判断战斗是否已经结束
 zce = 0
 While zce = 0
+	Call REJXS()
     IfColor 102,667,"E0F3F8",1 Then
         zce = 1
     End If
@@ -226,6 +260,7 @@ Delay 5000
 //点小纸人宝藏
 qds = 0
 While qds = 0
+Call REJXS()
 FindColor stx, sty, stx + 1136, sty + 640, "D4F4FF", x, y
 If x > 0 and y > 0 Then 
  TracePrint "找到小纸人"
