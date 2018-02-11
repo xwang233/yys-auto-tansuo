@@ -41,6 +41,7 @@ This is a script, written using Anjianjingling 9, for automated EXP farming in N
 ## 更新记录
 
 2018年1月13日，上传了初始版本。
+
 2018年2月11日，添加了对探索25章的支持；现在可以自动拒绝一切悬赏；满级狗粮的提示功能不完善，经常会不提示，需要玩家人工观察并更换狗粮。
 
 ## 免责声明
